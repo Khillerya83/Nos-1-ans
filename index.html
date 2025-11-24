@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un An Ensemble - Notre Histoire d'Amour</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom right, hsl(340, 100%, 95%), hsl(25, 95%, 98%), hsl(270, 50%, 80%));
+            color: hsl(340, 50%, 20%);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Password Modal */
+        .password-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .password-modal.hidden {
+            display: none;
+        }
+
+        .password-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(232, 28, 79, 0.2);
+            max-width: 400px;
+            width: 90%;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .password-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .password-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .password-header h2 {
+            font-size: 1.75rem;
+            color: hsl(340, 82%, 52%);
+            margin-bottom: 0.5rem;
+        }
+
+        .password-header p {
+            color: rgba(103, 33, 56, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid hsl(340, 82%, 52%, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: hsl(340, 82%, 52%);
+            box-shadow: 0 0 20px hsl(340, 82%, 52%, 0.2);
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px hsl(340, 82%, 52%, 0.3);
+        }
+
+        .password-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px hsl(340, 82%, 52%, 0.5);
+        }
+
+        .password-btn:active {
+            transform: scale(0.98);
+        }
+
+        .password-error {
+            color: hsl(0, 100%, 50%);
+            font-size: 0.85rem;
+            margin-top: -0.75rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .password-error.show {
+            display: block;
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: hsl(340, 50%, 20%);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: hsl(340, 82%, 52%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+
+        .heart-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px hsl(340, 82%, 52%, 0.5));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 40px hsl(340, 82%, 52%, 0.8));
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fade-in-up 0.8s ease 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: rgba(103, 33, 56, 0.8);
+            margin-bottom: 1rem;
+            max-width: 800px;
+            font-weight: 300;
+            animation: fade-in-up 0.8s ease 0.6s both;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            margin-bottom: 3rem;
+            animation: fade-in-up 0.8s ease 0.8s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            animation: fade-in-up 0.8s ease 1s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: hsl(340, 82%, 52%);
+            color: white;
+            box-shadow: 0 0 60px hsl(340, 82%, 52%, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 80px hsl(340, 82%, 52%, 0.6);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(232, 28, 79, 0.5);
+            color: hsl(340, 50%, 20%);
+        }
+
+        .btn-outline:hover {
+            transform: scale(1.05);
+            background: rgba(232, 28, 79, 0.1);
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Floating hearts */
+        .floating-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: float-up 5s ease-in infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.3;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 0.3;
+                transform: translateY(10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.875rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .password-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Modal -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-container">
+            <div class="password-header">
+                <span class="password-icon">🔐</span>
+                <h2>Accès Réservé</h2>
+                <p>Entrez le mot de passe pour accéder à notre histoire</p>
+            </div>
+            <form onsubmit="checkPassword(event)">
+                <input 
+                    type="password" 
+                    class="password-input" 
+                    id="passwordInput" 
+                    placeholder="Mot de passe" 
+                    autocomplete="off"
+                >
+                <div class="password-error" id="passwordError">Mot de passe incorrect</div>
+                <button type="submit" class="password-btn">Accéder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Notre Amour</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="notre-histoire.html">Notre Histoire</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="pourquoi.html">Pourquoi Je T'aime</a></li>
+                <li><a href="ensemble.html">Notre Avenir</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts">
+        <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="floating-heart" style="left: 20%; animation-delay: 1s;">❤️</div>
+        <div class="floating-heart" style="left: 30%; animation-delay: 2s;">❤️</div>
+        <div class="floating-heart" style="left: 40%; animation-delay: 0.5s;">❤️</div>
+        <div class="floating-heart" style="left: 50%; animation-delay: 1.5s;">❤️</div>
+        <div class="floating-heart" style="left: 60%; animation-delay: 2.5s;">❤️</div>
+        <div class="floating-heart" style="left: 70%; animation-delay: 1s;">❤️</div>
+        <div class="floating-heart" style="left: 80%; animation-delay: 2s;">❤️</div>
+        <div class="floating-heart" style="left: 90%; animation-delay: 0.5s;">❤️</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="heart-icon">❤️</div>
+        
+        <h1 class="hero-title">Un An Ensemble</h1>
+        
+        <p class="hero-subtitle">
+            Une année remplie d'amour, de rires et de moments inoubliables
+        </p>
+
+        <div class="hero-badge">
+            <span>📅</span>
+            <span style="font-size: 1.125rem; font-weight: 500;">365 jours de bonheur</span>
+            <span style="animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">✨</span>
+        </div>
+
+        <div class="hero-buttons">
+            <a href="notre-histoire.html" class="btn btn-primary">
+                Découvrir Notre Histoire
+            </a>
+            <a href="galerie.html" class="btn btn-outline">
+                Voir Nos Souvenirs
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Password protection
+        const PASSWORD = 'amour123'; // Changez ce mot de passe
+        
+        function initPasswordCheck() {
+            const passwordModal = document.getElementById('passwordModal');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordError = document.getElementById('passwordError');
+
+            if (!sessionStorage.getItem('authenticated')) {
+                passwordModal.classList.remove('hidden');
+            } else {
+                passwordModal.classList.add('hidden');
+            }
+
+            // Ajouter les event listeners
+            document.querySelector('.password-btn').addEventListener('click', function(e) {
+                checkPassword(e, passwordInput, passwordError, passwordModal);
+            });
+
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkPassword(e, passwordInput, passwordError, passwordModal);
+                }
+            });
+        }
+
+        function checkPassword(event, passwordInput, passwordError, passwordModal) {
+            event.preventDefault();
+            const input = passwordInput.value.trim();
+            
+            console.log('Mot de passe saisi:', input);
+            console.log('Mot de passe attendu:', PASSWORD);
+            
+            if (input === PASSWORD) {
+                console.log('Mot de passe correct !');
+                sessionStorage.setItem('authenticated', 'true');
+                passwordError.classList.remove('show');
+                passwordModal.classList.add('hidden');
+                passwordInput.value = '';
+            } else {
+                console.log('Mot de passe incorrect');
+                passwordError.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initPasswordCheck);
+    </script>
+</body>
+</html>
