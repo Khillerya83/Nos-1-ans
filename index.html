@@ -36,6 +36,7 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
+            padding: 1rem;
         }
 
         .password-modal.hidden {
@@ -44,11 +45,11 @@
 
         .password-container {
             background: white;
-            padding: 3rem;
+            padding: 2rem;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(232, 28, 79, 0.2);
             max-width: 400px;
-            width: 90%;
+            width: 100%;
             animation: slideDown 0.5s ease;
         }
 
@@ -75,14 +76,14 @@
         }
 
         .password-header h2 {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             color: hsl(340, 82%, 52%);
             margin-bottom: 0.5rem;
         }
 
         .password-header p {
             color: rgba(103, 33, 56, 0.6);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .password-input {
@@ -154,7 +155,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
         }
 
         .nav-container {
@@ -166,17 +167,27 @@
         }
 
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            white-space: nowrap;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: hsl(340, 50%, 20%);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
@@ -186,6 +197,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            font-size: 0.95rem;
         }
 
         .nav-links a::after {
@@ -211,12 +223,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 6rem 2rem 2rem;
+            padding: 7rem 1.5rem 2rem;
             position: relative;
         }
 
         .heart-icon {
-            font-size: 6rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             margin-bottom: 2rem;
             animation: pulse-glow 2s ease-in-out infinite;
         }
@@ -233,23 +245,25 @@
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2rem, 8vw, 6rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: fade-in-up 0.8s ease 0.4s both;
+            line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-size: clamp(1rem, 2vw, 1.5rem);
             color: rgba(103, 33, 56, 0.8);
-            margin-bottom: 1rem;
-            max-width: 800px;
+            margin-bottom: 1.5rem;
+            max-width: 90%;
             font-weight: 300;
             animation: fade-in-up 0.8s ease 0.6s both;
+            line-height: 1.4;
         }
 
         .hero-badge {
@@ -259,10 +273,13 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.75rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 9999px;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             animation: fade-in-up 0.8s ease 0.8s both;
+            font-size: clamp(0.85rem, 2vw, 1.125rem);
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .hero-buttons {
@@ -271,16 +288,21 @@
             gap: 1rem;
             justify-content: center;
             animation: fade-in-up 0.8s ease 1s both;
+            width: 100%;
+            max-width: 500px;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 9999px;
-            font-size: 1.125rem;
+            font-size: clamp(0.9rem, 2vw, 1.125rem);
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
         }
 
         .btn-primary {
@@ -317,15 +339,6 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
         /* Floating hearts */
         .floating-hearts {
             position: fixed;
@@ -337,7 +350,7 @@
 
         .floating-heart {
             position: absolute;
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             opacity: 0;
             animation: float-up 5s ease-in infinite;
         }
@@ -361,41 +374,136 @@
             }
         }
 
+        /* Mobile Menu */
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
             .nav-links {
-                gap: 1rem;
-                font-size: 0.875rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem;
+                display: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid rgba(232, 28, 79, 0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.75rem;
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                padding: 6rem 1rem 2rem;
+                min-height: auto;
+            }
+
+            .hero-buttons {
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.65rem 1rem;
+                min-width: 120px;
+            }
+
+            .password-container {
+                padding: 1.5rem;
+            }
+
+            .password-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .password-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.75rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 5.5rem 1rem 1.5rem;
+            }
+
+            .hero-title {
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-subtitle {
+                margin-bottom: 1rem;
+            }
+
+            .hero-badge {
+                margin-bottom: 1.5rem;
+                padding: 0.5rem 1rem;
             }
 
             .hero-buttons {
                 flex-direction: column;
-                width: 100%;
-                max-width: 300px;
+                gap: 0.5rem;
+            }
+
+            .btn {
+                flex: 1;
+                min-width: auto;
+                padding: 0.6rem 1rem;
             }
 
             .password-container {
-                padding: 2rem;
+                padding: 1.25rem;
+                width: 95%;
+            }
+
+            .password-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .password-icon {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .password-header p {
+                font-size: 0.85rem;
             }
         }
-        @media (max-width: 600px) {
-  .nav-links {
-    display: none; /* cacher les liens */
-  }
-
-  .nav-container::after {
-    content: "☰";
-    font-size: 2rem;
-    cursor: pointer;
-  }
-}
-        @media (max-width: 768px) {
-    .nav-links a {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.8rem;
-    }
-}
-
-
     </style>
 </head>
 <body>
@@ -425,7 +533,8 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo">Notre Amour</div>
-            <ul class="nav-links">
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="notre-histoire.html">Notre Histoire</a></li>
                 <li><a href="galerie.html">Galerie</a></li>
@@ -460,7 +569,7 @@
 
         <div class="hero-badge">
             <span>📅</span>
-            <span style="font-size: 1.125rem; font-weight: 500;">365 jours de bonheur</span>
+            <span style="font-weight: 500;">365 jours de bonheur</span>
             <span style="animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">✨</span>
         </div>
 
@@ -476,20 +585,16 @@
 
     <script>
         // Password protection
-        const PASSWORD = 'amour123'; // Changez ce mot de passe
+        const PASSWORD = 'amour123';
         
         function initPasswordCheck() {
             const passwordModal = document.getElementById('passwordModal');
             const passwordInput = document.getElementById('passwordInput');
             const passwordError = document.getElementById('passwordError');
 
-            if (!sessionStorage.getItem('authenticated')) {
-                passwordModal.classList.remove('hidden');
-            } else {
-                passwordModal.classList.add('hidden');
-            }
+            passwordModal.classList.remove('hidden');
+            passwordInput.focus();
 
-            // Ajouter les event listeners
             document.querySelector('.password-btn').addEventListener('click', function(e) {
                 checkPassword(e, passwordInput, passwordError, passwordModal);
             });
@@ -505,22 +610,31 @@
             event.preventDefault();
             const input = passwordInput.value.trim();
             
-            console.log('Mot de passe saisi:', input);
-            console.log('Mot de passe attendu:', PASSWORD);
-            
             if (input === PASSWORD) {
-                console.log('Mot de passe correct !');
-                sessionStorage.setItem('authenticated', 'true');
                 passwordError.classList.remove('show');
                 passwordModal.classList.add('hidden');
                 passwordInput.value = '';
             } else {
-                console.log('Mot de passe incorrect');
                 passwordError.classList.add('show');
                 passwordInput.value = '';
                 passwordInput.focus();
             }
         }
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', initPasswordCheck);
