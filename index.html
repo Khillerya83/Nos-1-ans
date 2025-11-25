@@ -377,6 +377,18 @@
                 padding: 2rem;
             }
         }
+        @media (max-width: 600px) {
+  .nav-links {
+    display: none; /* cacher les liens */
+  }
+
+  .nav-container::after {
+    content: "☰";
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
+
     </style>
 </head>
 <body>
