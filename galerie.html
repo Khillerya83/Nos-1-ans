@@ -32,7 +32,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
         }
 
         .nav-container {
@@ -44,12 +44,42 @@
         }
 
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            z-index: 101;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+            padding: 5px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: hsl(340, 82%, 52%);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .nav-links {
@@ -67,16 +97,16 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 1.5rem 3rem;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .camera-icon {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             margin-bottom: 1.5rem;
             animation: float 3s ease-in-out infinite;
         }
@@ -87,7 +117,7 @@
         }
 
         .header h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
@@ -97,15 +127,15 @@
         }
 
         .header p {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             color: rgba(103, 33, 56, 0.7);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .gallery-card {
@@ -122,66 +152,26 @@
             border-color: rgba(232, 28, 79, 0.4);
         }
 
-        .gallery-image img {
-    width: 150%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.gallery-image {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; /* carré parfait */
-    overflow: hidden;
-}
-
-.gallery-image img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* remplit sans déformer */
-    transform: translate(-50%, -50%);
-}
-
-
         .gallery-image {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, rgba(232, 28, 79, 0.2), rgba(179, 98, 255, 0.2), rgba(255, 207, 159, 0.2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
+            width: 100%;
+            padding-top: 100%;
             overflow: hidden;
+            background: linear-gradient(135deg, rgba(232, 28, 79, 0.2), rgba(179, 98, 255, 0.2), rgba(255, 207, 159, 0.2));
         }
 
-        .gallery-image::before {
-            content: '📷';
-            font-size: 4rem;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-card:hover .gallery-image::before {
-            transform: scale(1.1);
-        }
-
-        .gallery-image::after {
-            content: '';
+        .gallery-image img {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-card:hover .gallery-image::after {
-            opacity: 1;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
         }
 
         .gallery-info {
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
 
         .gallery-date {
@@ -192,19 +182,19 @@
         }
 
         .gallery-title {
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .gallery-description {
             color: rgba(103, 33, 56, 0.7);
-            font-size: 0.875rem;
+            font-size: clamp(0.85rem, 2vw, 0.875rem);
         }
 
         .quote-section {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -214,15 +204,65 @@
         }
 
         .quote-section p {
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
             color: rgba(103, 33, 56, 0.7);
             font-style: italic;
             line-height: 1.8;
         }
 
         @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                width: 80%;
+            }
+
+            .container {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .gallery-grid {
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -231,7 +271,12 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo">Notre Amour</div>
-            <ul class="nav-links">
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="notre-histoire.html">Notre Histoire</a></li>
                 <li><a href="galerie.html">Galerie</a></li>
@@ -251,9 +296,8 @@
         <div class="gallery-grid">
             <div class="gallery-card">
                 <div class="gallery-image">
-                    <img src ="Premier jour.jpg" alt="Premier Rendez-vous">
+                    <img src="Premier jour.jpg" alt="Premier Rendez-vous">
                 </div>
-                    
                 <div class="gallery-info">
                     <p class="gallery-date">Décembre 2024</p>
                     <h3 class="gallery-title">Premier Bisous + Officialisation</h3>
@@ -263,7 +307,7 @@
 
             <div class="gallery-card">
                 <div class="gallery-image">
-                    <img src ="plage ensemble.jpg" alt="Journée à la Plage">
+                    <img src="plage ensemble.jpg" alt="Journée à la Plage">
                 </div>
                 <div class="gallery-info">
                     <p class="gallery-date">Mai 2025</p>
@@ -274,7 +318,7 @@
 
             <div class="gallery-card">
                 <div class="gallery-image">
-                    <img src ="pique-nique.jpg" alt="Pique-nique au Parc">
+                    <img src="pique-nique.jpg" alt="Pique-nique au Parc">
                 </div>
                 <div class="gallery-info">
                     <p class="gallery-date">Mai 2025</p>
@@ -285,34 +329,34 @@
 
             <div class="gallery-card">
                 <div class="gallery-image">
-                    <img src ="le bal.jpg" alt="Bal de fin d'année">
+                    <img src="le bal.jpg" alt="Bal de fin d'année">
                 </div>
                 <div class="gallery-info">
                     <p class="gallery-date">Juin 2025</p>
-                    <h3 class="gallery-title">Bal de fin d'année </h3>
+                    <h3 class="gallery-title">Bal de fin d'année</h3>
                     <p class="gallery-description">Une soirée incroyable</p>
                 </div>
             </div>
 
             <div class="gallery-card">
                 <div class="gallery-image">
-                    <img src ="la photo trop mimi.jpg" alt="Photo trop mignonne">
+                    <img src="la photo trop mimi.jpg" alt="Photo trop mignonne">
                 </div>
                 <div class="gallery-info">
                     <p class="gallery-date">Juin 2025</p>
                     <h3 class="gallery-title">Photo trop mignonne</h3>
-                    <p class="gallery-description">C'est ma photo préferer je pense sincèrement </p>
+                    <p class="gallery-description">C'est ma photo préférée je pense sincèrement</p>
                 </div>
             </div>
 
             <div class="gallery-card">
                 <div class="gallery-image">
-                    <img src ="mon anniv.webp" alt="Mon Anniversaire">
+                    <img src="mon anniv.webp" alt="Mon Anniversaire">
                 </div>
                 <div class="gallery-info">
                     <p class="gallery-date">Juillet 2025</p>
-                    <h3 class="gallery-title">Mon Anniversaire </h3>
-                    <p class="gallery-description">mon plus bel anniversaire ! </p>
+                    <h3 class="gallery-title">Mon Anniversaire</h3>
+                    <p class="gallery-description">mon plus bel anniversaire !</p>
                 </div>
             </div>
         </div>
@@ -321,5 +365,29 @@
             <p>"Chaque photo est un trésor, chaque moment avec toi est précieux. Merci pour tous ces souvenirs inoubliables. ❤️"</p>
         </div>
     </div>
+
+    <script>
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
