@@ -23,6 +23,7 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -32,7 +33,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
         }
 
         .nav-container {
@@ -44,12 +45,42 @@
         }
 
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            z-index: 101;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+            padding: 5px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: hsl(340, 82%, 52%);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .nav-links {
@@ -68,16 +99,16 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 1.5rem 3rem;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .header h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
@@ -87,10 +118,11 @@
         }
 
         .header p {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             color: rgba(103, 33, 56, 0.7);
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .timeline {
@@ -99,10 +131,10 @@
         }
 
         .timeline-item {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             position: relative;
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
         }
 
@@ -116,7 +148,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 1rem;
-            padding: 1.5rem;
+            padding: 1.25rem;
             transition: all 0.3s ease;
         }
 
@@ -126,14 +158,15 @@
         }
 
         .timeline-icon {
-            width: 3.5rem;
-            height: 3.5rem;
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
             background: rgba(232, 28, 79, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
         .timeline-dot {
@@ -157,7 +190,7 @@
         }
 
         .timeline-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -165,12 +198,13 @@
         .timeline-description {
             color: rgba(103, 33, 56, 0.7);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .finale {
             text-align: center;
             margin-top: 4rem;
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -181,7 +215,7 @@
         }
 
         .finale-icon {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             margin-bottom: 1rem;
             animation: pulse-glow 2s ease-in-out infinite;
         }
@@ -198,7 +232,7 @@
         }
 
         .finale h2 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: 1rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
@@ -207,11 +241,40 @@
         }
 
         .finale p {
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
             color: rgba(103, 33, 56, 0.7);
         }
 
         @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
             .timeline-item,
             .timeline-item:nth-child(even) {
                 flex-direction: column;
@@ -220,6 +283,20 @@
             .timeline-spacer {
                 display: none;
             }
+
+            .timeline-content {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                width: 80%;
+            }
+
+            .container {
+                padding: 5rem 1rem 2rem;
+            }
         }
     </style>
 </head>
@@ -227,7 +304,12 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo">Notre Amour</div>
-            <ul class="nav-links">
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="notre-histoire.html">Notre Histoire</a></li>
                 <li><a href="galerie.html">Galerie</a></li>
@@ -326,5 +408,29 @@
             <p>Chaque jour avec toi est une nouvelle aventure que j'ai hâte de vivre.</p>
         </div>
     </div>
+
+    <script>
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
