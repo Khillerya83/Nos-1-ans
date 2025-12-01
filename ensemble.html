@@ -34,7 +34,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
         }
 
         .nav-container {
@@ -46,12 +46,42 @@
         }
 
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            z-index: 101;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+            padding: 5px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: hsl(340, 82%, 52%);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .nav-links {
@@ -69,18 +99,18 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 1.5rem 3rem;
             position: relative;
             z-index: 10;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .float-icon {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             margin-bottom: 1.5rem;
             animation: float 3s ease-in-out infinite;
         }
@@ -91,7 +121,7 @@
         }
 
         .header h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
@@ -101,15 +131,16 @@
         }
 
         .header p {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             color: rgba(103, 33, 56, 0.7);
+            padding: 0 1rem;
         }
 
         .dreams-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .dream-card {
@@ -117,7 +148,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(232, 28, 79, 0.2);
             border-radius: 1rem;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -128,14 +159,14 @@
         }
 
         .dream-icon {
-            width: 4rem;
-            height: 4rem;
+            width: 3.5rem;
+            height: 3.5rem;
             border-radius: 50%;
             background: rgba(232, 28, 79, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.75rem;
             margin: 0 auto 1rem;
             transition: transform 0.3s ease;
         }
@@ -145,7 +176,7 @@
         }
 
         .dream-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
             font-weight: 700;
             margin-bottom: 0.75rem;
         }
@@ -153,6 +184,7 @@
         .dream-description {
             color: rgba(103, 33, 56, 0.7);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .promise-section {
@@ -162,7 +194,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(232, 28, 79, 0.3);
             border-radius: 1.5rem;
-            padding: 3rem;
+            padding: 2.5rem 2rem;
             box-shadow: 0 0 60px hsl(340, 82%, 52%, 0.4);
             text-align: center;
             position: relative;
@@ -192,7 +224,7 @@
         }
 
         .promise-icon {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 10;
@@ -211,7 +243,7 @@
         }
 
         .promise-section h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
@@ -223,7 +255,7 @@
 
         .promise-content {
             color: rgba(103, 33, 56, 0.8);
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
             line-height: 1.8;
             position: relative;
             z-index: 10;
@@ -257,12 +289,11 @@
 
         .promise-signature {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
             color: hsl(340, 82%, 52%);
             margin-top: 1.5rem;
         }
 
-        /* Floating hearts animation */
         .floating-hearts {
             position: fixed;
             inset: 0;
@@ -296,12 +327,69 @@
         }
 
         @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
             .dreams-grid {
                 grid-template-columns: 1fr;
             }
 
             .promise-section {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                width: 80%;
+            }
+
+            .container {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .dreams-grid {
+                gap: 1rem;
+            }
+
+            .dream-card {
+                padding: 1.25rem;
+            }
+
+            .promise-section {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .dreams-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -310,7 +398,12 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo">Notre Amour</div>
-            <ul class="nav-links">
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="notre-histoire.html">Notre Histoire</a></li>
                 <li><a href="galerie.html">Galerie</a></li>
@@ -320,7 +413,6 @@
         </div>
     </nav>
 
-    <!-- Floating Hearts -->
     <div class="floating-hearts">
         <div class="floating-heart" style="left: 5%; animation-delay: 0s;">❤️</div>
         <div class="floating-heart" style="left: 15%; animation-delay: 2s;">❤️</div>
@@ -361,7 +453,7 @@
             </div>
 
             <div class="dream-card">
-                <div class="dream-icon" style="color: hsl(15, 80%, 70%);">📍</div>
+                <div class="dream-icon" style="color: hsl(15, 80%, 70%);">🔥</div>
                 <h3 class="dream-title">Nos aventures</h3>
                 <p class="dream-description">Vivre mille et une aventures, des plus simples aux plus extraordinaires.</p>
             </div>
@@ -380,23 +472,47 @@
         </div>
 
         <div class="promise-section">
-    <div class="promise-icon">❤️</div>
-    <h2>Ma Promesse</h2>
-    <div class="promise-content">
-        <p class="promise-quote">"Je veux qu’on avance ensemble, jour après jour, sans se lâcher."</p>
-        <p>
-            Je veux construire plein de choses avec toi, partager nos projets, nos délires,
-            nos rêves. J’ai envie de vivre le futur à tes côtés, peu importe ce qu’il nous
-            réserve, parce qu’avec toi tout paraît plus simple et plus beau.
-        </p>
-        <div class="promise-divider">
-            <div class="promise-line"></div>
-            <div style="font-size: 1.5rem;">❤️</div>
-            <div class="promise-line reverse"></div>
+            <div class="promise-icon">❤️</div>
+            <h2>Ma Promesse</h2>
+            <div class="promise-content">
+                <p class="promise-quote">"Je veux qu'on avance ensemble, jour après jour, sans se lâcher."</p>
+                <p>
+                    Je veux construire plein de choses avec toi, partager nos projets, nos délires,
+                    nos rêves. J'ai envie de vivre le futur à tes côtés, peu importe ce qu'il nous
+                    réserve, parce qu'avec toi tout paraît plus simple et plus beau.
+                </p>
+                <div class="promise-divider">
+                    <div class="promise-line"></div>
+                    <div style="font-size: 1.5rem;">❤️</div>
+                    <div class="promise-line reverse"></div>
+                </div>
+                <p class="promise-signature">Pour toi, toujours</p>
+            </div>
         </div>
-        <p class="promise-signature">Pour toi, toujours</p>
     </div>
-</div>
 
+    <script>
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
