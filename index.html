@@ -23,7 +23,6 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Password Modal */
         .password-modal {
             display: flex;
             position: fixed;
@@ -141,7 +140,6 @@
             75% { transform: translateX(10px); }
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -172,7 +170,6 @@
             z-index: 101;
         }
 
-        /* Menu Burger */
         .burger-menu {
             display: none;
             flex-direction: column;
@@ -232,7 +229,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -248,6 +244,7 @@
             font-size: clamp(3rem, 12vw, 6rem);
             margin-bottom: 1.5rem;
             animation: pulse-glow 2s ease-in-out infinite;
+            color: hsl(340, 82%, 52%);
         }
 
         @keyframes pulse-glow {
@@ -354,7 +351,6 @@
             }
         }
 
-        /* Floating hearts */
         .floating-hearts {
             position: fixed;
             inset: 0;
@@ -368,6 +364,7 @@
             font-size: 1.5rem;
             opacity: 0;
             animation: float-up 5s ease-in infinite;
+            color: hsl(340, 82%, 52%);
         }
 
         @keyframes float-up {
@@ -389,7 +386,6 @@
             }
         }
 
-        /* Responsive breakpoints */
         @media (max-width: 768px) {
             .burger-menu {
                 display: flex;
@@ -420,10 +416,6 @@
                 padding: 0.5rem 0;
             }
 
-            .nav-links a::after {
-                bottom: 0;
-            }
-
             .hero {
                 padding: 5rem 1rem 2rem;
             }
@@ -431,7 +423,6 @@
             .hero-buttons {
                 flex-direction: column;
                 max-width: 100%;
-                align-items: center;
             }
 
             .btn {
@@ -466,15 +457,14 @@
     </style>
 </head>
 <body>
-    <!-- Password Modal -->
     <div class="password-modal" id="passwordModal">
         <div class="password-container">
             <div class="password-header">
-                <span class="password-icon">🔒</span>
-                <h2>Accès Réservé</h2>
-                <p>Entrez le mot de passe pour accéder à notre histoire</p>
+                <span class="password-icon">&#128274;</span>
+                <h2>Acces Reserve</h2>
+                <p>Entrez le mot de passe pour acceder a notre histoire</p>
             </div>
-            <form onsubmit="checkPassword(event)">
+            <form onsubmit="return false;">
                 <input 
                     type="password" 
                     class="password-input" 
@@ -483,12 +473,11 @@
                     autocomplete="off"
                 >
                 <div class="password-error" id="passwordError">Mot de passe incorrect</div>
-                <button type="submit" class="password-btn">Accéder</button>
+                <button type="button" class="password-btn" onclick="checkPassword()">Acceder</button>
             </form>
         </div>
     </div>
 
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="nav-logo">Notre Amour</div>
@@ -507,38 +496,36 @@
         </div>
     </nav>
 
-    <!-- Floating Hearts -->
     <div class="floating-hearts">
-        <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
-        <div class="floating-heart" style="left: 20%; animation-delay: 1s;">❤️</div>
-        <div class="floating-heart" style="left: 30%; animation-delay: 2s;">❤️</div>
-        <div class="floating-heart" style="left: 40%; animation-delay: 0.5s;">❤️</div>
-        <div class="floating-heart" style="left: 50%; animation-delay: 1.5s;">❤️</div>
-        <div class="floating-heart" style="left: 60%; animation-delay: 2.5s;">❤️</div>
-        <div class="floating-heart" style="left: 70%; animation-delay: 1s;">❤️</div>
-        <div class="floating-heart" style="left: 80%; animation-delay: 2s;">❤️</div>
-        <div class="floating-heart" style="left: 90%; animation-delay: 0.5s;">❤️</div>
+        <div class="floating-heart" style="left: 10%; animation-delay: 0s;">&#10084;</div>
+        <div class="floating-heart" style="left: 20%; animation-delay: 1s;">&#10084;</div>
+        <div class="floating-heart" style="left: 30%; animation-delay: 2s;">&#10084;</div>
+        <div class="floating-heart" style="left: 40%; animation-delay: 0.5s;">&#10084;</div>
+        <div class="floating-heart" style="left: 50%; animation-delay: 1.5s;">&#10084;</div>
+        <div class="floating-heart" style="left: 60%; animation-delay: 2.5s;">&#10084;</div>
+        <div class="floating-heart" style="left: 70%; animation-delay: 1s;">&#10084;</div>
+        <div class="floating-heart" style="left: 80%; animation-delay: 2s;">&#10084;</div>
+        <div class="floating-heart" style="left: 90%; animation-delay: 0.5s;">&#10084;</div>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="heart-icon">❤️</div>
+        <div class="heart-icon">&#10084;</div>
         
         <h1 class="hero-title">Un An Ensemble</h1>
         
         <p class="hero-subtitle">
-            Une année remplie d'amour, de rires et de moments inoubliables
+            Une annee remplie d'amour, de rires et de moments inoubliables
         </p>
 
         <div class="hero-badge">
-            <span>📅</span>
+            <span>&#128197;</span>
             <span style="font-weight: 500;">365 jours de bonheur</span>
-            <span style="animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">✨</span>
+            <span>&#10024;</span>
         </div>
 
         <div class="hero-buttons">
             <a href="notre-histoire.html" class="btn btn-primary">
-                Découvrir Notre Histoire
+                Decouvrir Notre Histoire
             </a>
             <a href="galerie.html" class="btn btn-outline">
                 Voir Nos Souvenirs
@@ -547,20 +534,9 @@
     </section>
 
     <script>
-        // Password protection
         const PASSWORD = 'amour123';
         
-        function initPasswordCheck() {
-            const passwordModal = document.getElementById('passwordModal');
-            const passwordInput = document.getElementById('passwordInput');
-            const passwordError = document.getElementById('passwordError');
-
-            // Toujours demander le mot de passe (ne pas vérifier sessionStorage)
-            passwordModal.classList.remove('hidden');
-        }
-
-        function checkPassword(event) {
-            event.preventDefault();
+        function checkPassword() {
             const passwordInput = document.getElementById('passwordInput');
             const passwordError = document.getElementById('passwordError');
             const passwordModal = document.getElementById('passwordModal');
@@ -578,33 +554,42 @@
             }
         }
 
-        // Burger Menu
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const passwordModal = document.getElementById('passwordModal');
+            if (!sessionStorage.getItem('authenticated')) {
+                passwordModal.classList.remove('hidden');
+            } else {
+                passwordModal.classList.add('hidden');
+            }
+        });
+
         const burgerMenu = document.getElementById('burgerMenu');
         const navLinks = document.getElementById('navLinks');
 
-        burgerMenu.addEventListener('click', () => {
+        burgerMenu.addEventListener('click', function() {
             burgerMenu.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking on a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+        navLinks.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
                 burgerMenu.classList.remove('active');
                 navLinks.classList.remove('active');
             });
         });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', function(e) {
             if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
                 burgerMenu.classList.remove('active');
                 navLinks.classList.remove('active');
             }
         });
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', initPasswordCheck);
     </script>
 </body>
 </html>
