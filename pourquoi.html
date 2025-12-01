@@ -32,7 +32,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
         }
 
         .nav-container {
@@ -44,12 +44,42 @@
         }
 
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            z-index: 101;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+            padding: 5px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: hsl(340, 82%, 52%);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .nav-links {
@@ -67,16 +97,16 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 1.5rem 3rem;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .heart-icon {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             margin-bottom: 1.5rem;
             animation: pulse-glow 2s ease-in-out infinite;
         }
@@ -93,7 +123,7 @@
         }
 
         .header h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
@@ -103,17 +133,18 @@
         }
 
         .header p {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             color: rgba(103, 33, 56, 0.7);
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .reason-card {
@@ -153,7 +184,7 @@
         }
 
         .reason-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
             font-weight: 700;
             color: hsl(340, 82%, 52%);
             margin-bottom: 0.5rem;
@@ -162,6 +193,7 @@
         .reason-text {
             color: rgba(103, 33, 56, 0.7);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .love-letter {
@@ -171,19 +203,19 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(232, 28, 79, 0.3);
             border-radius: 1.5rem;
-            padding: 3rem;
+            padding: 2.5rem 2rem;
             box-shadow: 0 0 60px hsl(340, 82%, 52%, 0.4);
             text-align: center;
         }
 
         .letter-icon {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             margin-bottom: 1.5rem;
             animation: pulse-glow 2s ease-in-out infinite;
         }
 
         .love-letter h2 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, hsl(340, 82%, 52%), hsl(15, 80%, 70%), hsl(30, 100%, 85%));
             -webkit-background-clip: text;
@@ -193,7 +225,7 @@
 
         .letter-content {
             color: rgba(103, 33, 56, 0.8);
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
             line-height: 1.8;
         }
 
@@ -203,18 +235,75 @@
 
         .letter-signature {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 3vw, 1.25rem);
             color: hsl(340, 82%, 52%);
             margin-top: 1.5rem;
         }
 
         @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
             .reasons-grid {
                 grid-template-columns: 1fr;
             }
 
             .love-letter {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                width: 80%;
+            }
+
+            .container {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .reasons-grid {
+                gap: 1rem;
+            }
+
+            .reason-card {
+                padding: 1.25rem;
+            }
+
+            .love-letter {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .reasons-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -223,7 +312,12 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo">Notre Amour</div>
-            <ul class="nav-links">
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="notre-histoire.html">Notre Histoire</a></li>
                 <li><a href="galerie.html">Galerie</a></li>
@@ -241,86 +335,86 @@
         </div>
 
         <div class="reasons-grid">
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">❤️</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Ton sourire</h3>
-                <p class="reason-text">Ton sourire, c’est vraiment le truc qui me fait tout oublier. Il me calme, il me rassure, et il me rend heureux sans que tu t’en rendes compte.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">❤️</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Ton sourire</h3>
+                        <p class="reason-text">Ton sourire, c'est vraiment le truc qui me fait tout oublier. Il me calme, il me rassure, et il me rend heureux sans que tu t'en rendes compte.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">✨</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Ta gentillesse</h3>
-                <p class="reason-text">Tu es douce, attentionnée, toujours là pour les autres… et c’est ce qui te rend encore plus belle à mes yeux.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">✨</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Ta gentillesse</h3>
+                        <p class="reason-text">Tu es douce, attentionnée, toujours là pour les autres… et c'est ce qui te rend encore plus belle à mes yeux.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">⭐</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Ton humour</h3>
-                <p class="reason-text">Tu sais me faire rire même quand je suis fatiguer. Avec toi, aucun moment n’est vraiment banal.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">⭐</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Ton humour</h3>
+                        <p class="reason-text">Tu sais me faire rire même quand je suis fatigué. Avec toi, aucun moment n'est vraiment banal.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">❤️</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Ta force</h3>
-                <p class="reason-text">Tu n’imagines pas à quel point t’es forte. Ta façon d’encaisser, de toujours te relever… ça m’impressionne vraiment.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">❤️</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Ta force</h3>
+                        <p class="reason-text">Tu n'imagines pas à quel point t'es forte. Ta façon d'encaisser, de toujours te relever… ça m'impressionne vraiment.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">✨</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Notre complicité</h3>
-                <p class="reason-text">Avec toi, tout est simple. On se comprend vite, on se marre, on se prend pas la tête… c’est rare et j’y tiens.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">✨</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Notre complicité</h3>
+                        <p class="reason-text">Avec toi, tout est simple. On se comprend vite, on se marre, on se prend pas la tête… c'est rare et j'y tiens.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">⭐</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Ton amour</h3>
-                <p class="reason-text">Ta manière d’aimer, elle est vraie, elle est sincère. Grâce à toi j’ai envie d’avancer, de devenir meilleur.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">⭐</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Ton amour</h3>
+                        <p class="reason-text">Ta manière d'aimer, elle est vraie, elle est sincère. Grâce à toi j'ai envie d'avancer, de devenir meilleur.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">❤️</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Ta présence</h3>
-                <p class="reason-text">Quand t’es là, tout va mieux. Même sans parler, juste ta présence me fait du bien.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">❤️</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Ta présence</h3>
+                        <p class="reason-text">Quand t'es là, tout va mieux. Même sans parler, juste ta présence me fait du bien.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="reason-card">
-        <div class="reason-header">
-            <div class="reason-icon">✨</div>
-            <div class="reason-content">
-                <h3 class="reason-title">Tes petites attentions</h3>
-                <p class="reason-text">Les petites choses que tu fais sans y penser… c’est ça qui me touche le plus. Ça montre que tu tiens à moi.</p>
+            <div class="reason-card">
+                <div class="reason-header">
+                    <div class="reason-icon">✨</div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">Tes petites attentions</h3>
+                        <p class="reason-text">Les petites choses que tu fais sans y penser… c'est ça qui me touche le plus. Ça montre que tu tiens à moi.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
         <div class="love-letter">
             <div class="letter-icon">❤️</div>
@@ -334,5 +428,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                burgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
